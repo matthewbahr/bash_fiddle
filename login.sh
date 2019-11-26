@@ -28,7 +28,7 @@ echo "##############"
 username=$(<username)
 
 #Login, save header and cookies, trim header down to not have excess white space
-wget -q --server-response --save-cookies cookies --keep-session-cookies --post-data="userName=$username&password=$password" "https://$website/formslogin/Login" 2>&1 | grep \ RequestVerificationToken | cut -c 3- > header
+wget -O login_response -q --server-response --save-cookies cookies --keep-session-cookies --post-data="userName=$username&password=$password" "https://$website/formslogin/Login" 2>&1 | grep \ RequestVerificationToken | cut -c 3- > header
 
 rm Login -f
 
