@@ -3,8 +3,11 @@
 clear
 
 website=$(<website)
+username=$(<username)
 
-echo "$website password:"
+echo "$website" 
+echo "$username"
+echo "password:"
 
 while IFS= read -r -s -n1 pass; do
 if [[ -z $pass ]]; then
@@ -24,8 +27,6 @@ rm header -f
 echo "##############"
 echo Authenticating
 echo "##############"
-
-username=$(<username)
 
 #Login, save header and cookies, trim header down to not have excess white space
 wget -O login_response -q --server-response --save-cookies cookies --keep-session-cookies --post-data="userName=$username&password=$password" "https://$website/formslogin/Login" 2>&1 | grep \ RequestVerificationToken | cut -c 3- > header
